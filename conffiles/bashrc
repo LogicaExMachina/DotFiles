@@ -1,0 +1,13 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+[[ -f /usr/share/bash-completion/completions/git ]] && . /usr/share/bash-completion/completions/git
+
+alias ls='ls --color=auto'
+#PS1='[\u@\h \W]\$ '
+
+export PS1='[\u@\h:\w] $(vcprompt -f "%a%u%m[%s:%b]")\$ '
