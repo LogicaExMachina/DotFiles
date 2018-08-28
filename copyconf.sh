@@ -20,3 +20,17 @@ if [[ -d ~/.config ]]; then
 		cp ~/.config/i3/config conffiles/config/i3/config
 	fi
 fi
+
+if [[ -d ~/.mozilla/firefox ]]; then
+	MOZBASE=~/.mozilla/firefox/
+	MOZ=${MOZBASE}profiles.ini
+	if [[ $(grep '\[Profile[^0]\]' ${MOZ}) ]]; then
+		PROFPATH=$(grep -E '^\[Profile|^Path|^Default' ${MOZ} | grep -1 '^Default=1' | grep '^Path' | cut -c6-)
+	else 
+		PROFPATH=$(grep 'Path=' ${MOZ} | sed 's/^Path=//')
+	fi
+	if [[ -d ${MOZBASE}${PROFPATH}/chrome ]]; then
+		mkdir -p conffiles/mozilla/firefox/chrome
+		cp ${MOZBASE}${PROFPATH}/chrome/userChrome.css conffiles/mozilla/firefox/chrome/userchrome.css
+	fi
+fi
