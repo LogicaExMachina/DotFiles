@@ -9,5 +9,6 @@
 
 alias ls='ls --color=auto'
 #PS1='[\u@\h \W]\$ '
+export PATH=$PATH:~/bin
 
 export PS1='[\u@\h:\w] $(vcprompt -f "%a%u%m[%s:%b]")\$ '
